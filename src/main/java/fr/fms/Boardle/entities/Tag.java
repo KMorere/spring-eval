@@ -4,17 +4,15 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor @Setter @ToString
-public class Task implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+public class Tag implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    private String description;
 
-    @ManyToOne
-    private Tag tag;
+    @OneToMany(mappedBy = "tags")
+    private Collection<Task> tasks;
 }
