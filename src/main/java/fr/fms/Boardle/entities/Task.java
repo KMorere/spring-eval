@@ -19,6 +19,6 @@ public class Task implements Serializable {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate date;
 
-    @ManyToOne
+    @ManyToOne(optional = true)
     private Tag tag;
 }
