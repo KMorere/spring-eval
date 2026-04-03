@@ -1,9 +1,11 @@
 package fr.fms.Boardle.entities;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor @Setter @ToString
@@ -14,6 +16,8 @@ public class Task implements Serializable {
     private Long id;
     private String title;
     private String description;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate date;
 
     @ManyToOne
     private Tag tag;
