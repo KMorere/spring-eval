@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Boardle</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css"
+          th:href="@{css/bootstrap.min.css}">
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="container-fluid">
+            <ul class="nav nav-pills">
+
+            </ul>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Board</div>
+
+            <div class="panel-body">
+
+            </div>
+
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                    </tr>
+                    <tr th:each="a:${tasks}">
+                        <td th:text="${a.id}"></td>
+                        <td th:text="${a.title}"></td>
+                        <td th:text="${a.description}"></td>
+                        <td th:text="${a.date}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
