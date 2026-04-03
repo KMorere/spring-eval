@@ -21,4 +21,17 @@ public class Task implements Serializable {
 
     @ManyToOne(optional = true)
     private Tag tag;
+
+    public Task(String title, String description, LocalDate date) {
+        this.title = title;
+        this.description = description;
+        this.date = date;
+    }
+
+    public Task(String title, String description, LocalDate date, Tag tag) {
+        this.title = title;
+        this.description = description;
+        this.date = date;
+        this.tag = tag;
+    }
 }

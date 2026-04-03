@@ -13,6 +13,10 @@ public class Tag implements Serializable {
     private Long id;
     private String title;
 
-    @OneToMany(mappedBy = "tags")
+    @OneToMany(mappedBy = "tag")
     private Collection<Task> tasks;
+
+    public Tag(String title) {
+        this.title = title;
+    }
 }
