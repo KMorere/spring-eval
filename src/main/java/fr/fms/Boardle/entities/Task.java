@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor @Setter @ToString
+@Data @NoArgsConstructor @AllArgsConstructor @Getter @Setter @ToString
 public class Task implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -18,7 +18,7 @@ public class Task implements Serializable {
     private Long id;
     private String title;
     private String description;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd", iso = DateTimeFormat.ISO.DATE)
     private LocalDate date;
     private boolean completed;
 
