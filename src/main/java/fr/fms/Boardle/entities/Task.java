@@ -55,7 +55,7 @@ public class Task implements Serializable {
         int days = this.dateCountdown();
 
         if (days == 0)
-            text = "today";
+            text = "Today";
         else
             text = (days >= 0) ? ""+days : Math.abs(days)+" days ago";
 

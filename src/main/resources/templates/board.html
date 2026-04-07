@@ -59,7 +59,8 @@
                                     <input type="hidden" class="form-control" name="id" th:value="*{task.id}" id="id">
 
                                     <label class="control-label">
-                                        <input type="radio" name="completed" th:text="Done :"
+                                        <span>Done :</span>
+                                        <input type="radio" name="completed"
                                                th:checked="${task.isCompleted()}" onclick="this.form.submit()">
                                     </label>
                                 </form>
