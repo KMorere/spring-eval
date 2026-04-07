@@ -30,6 +30,14 @@ public class TaskController {
         return "board";
     }
 
+    @PostMapping("/complete_task")
+    public String complete_task(Task task) {
+        Task newTask = taskRepository.findById(task.getId()).get();
+        newTask.setCompleted(!newTask.isCompleted());
+        taskRepository.save(newTask);
+        return "redirect:/index";
+    }
+
     @GetMapping("/add_task")
     public String add_task(Model model) {
         model.addAttribute("task", new Task());

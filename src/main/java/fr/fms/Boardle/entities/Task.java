@@ -20,6 +20,7 @@ public class Task implements Serializable {
     private String description;
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate date;
+    private boolean completed;
 
     @ManyToOne(optional = true)
     private Tag tag;
@@ -39,7 +40,7 @@ public class Task implements Serializable {
 
     /**
      * Calculate the amount of days left for a task.
-     * @return the amount of days left or how long ago the date was passed.
+     * @return The amount of days left or how long ago the date was passed.
      */
     public int dateCountdown() {
         return (int)ChronoUnit.DAYS.between(LocalDate.now(), this.getDate());
@@ -47,7 +48,7 @@ public class Task implements Serializable {
 
     /**
      * Display the amount of days left for a task.
-     * @return the amount of days left or how long ago the date was passed.
+     * @return The amount of days left or how long ago the date was passed.
      */
     public String formatDate() {
         String text = "";
