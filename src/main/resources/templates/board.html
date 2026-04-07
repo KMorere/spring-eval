@@ -33,7 +33,12 @@
 
                         <div class="panel-body">
                             <div class="panel panel-default" th:each="task:${tasks}" th:if="${!task.isCompleted()}">
-                                <div class="panel-heading" th:text="${task.tag.getTitle()}"></div>
+                                <div class="panel-heading" style="display: flex; align-items: center; justify-content: space-between;">
+                                    <div th:text="${task.tag.getTitle()}"></div>
+                                    <a class="btn btn-primary" style="padding: 3px; padding-inline: 6px;" th:href="@{/edit_task(id=${task.id})}">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                </div>
 
                                 <div class="panel-body">
                                     <div style="display: flex; align-items: center; justify-content: space-between;">

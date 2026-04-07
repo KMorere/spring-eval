@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -49,6 +50,23 @@ public class TaskController {
     public String save(@Valid Task task, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "redirect:/add_task";
+        taskRepository.save(task);
+        return "redirect:/index";
+    }
+
+    @GetMapping("/edit_task")
+    public String edit_task(Model model, @RequestParam(name="id") long id) {
+        Task task = taskRepository.getById(id);
+        model.addAttribute("id", id);
+        model.addAttribute("task", task);
+        model.addAttribute("tags", tagRepository.findAll());
+        System.out.println(task);
+        return "edit_task";
+    }
+
+    @PostMapping("/update")
+    public String update(Task task) {
+        System.out.println(task);
         taskRepository.save(task);
         return "redirect:/index";
     }
