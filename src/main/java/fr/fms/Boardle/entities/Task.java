@@ -41,9 +41,17 @@ public class Task implements Serializable {
      * Calculate the amount of days left for a task.
      * @return the amount of days left or how long ago the date was passed.
      */
-    public String dateCountdown() {
+    public int dateCountdown() {
+        return (int)ChronoUnit.DAYS.between(LocalDate.now(), this.getDate());
+    }
+
+    /**
+     * Display the amount of days left for a task.
+     * @return the amount of days left or how long ago the date was passed.
+     */
+    public String formatDate() {
         String text = "";
-        int days = (int)ChronoUnit.DAYS.between(LocalDate.now(), this.getDate());
+        int days = this.dateCountdown();
 
         if (days == 0)
             text = "today";

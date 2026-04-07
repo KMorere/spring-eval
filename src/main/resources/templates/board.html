@@ -59,8 +59,14 @@
                             </div>
 
                             <div class="panel-footer text-muted">
-                                <i class="bi bi-clock"></i>
-                                <span th:text="${task.dateCountdown()}"></span>
+                                <div th:if="${task.dateCountdown() >= 0}">
+                                    <i class="bi bi-clock"></i>
+                                    <span th:text="${task.dateCountdown()}"></span>
+                                </div>
+                                <div class="text-danger" th:unless="${task.dateCountdown() >= 0}">
+                                    <i class="bi bi-clock"></i>
+                                    <span th:text="${task.formatDate()}"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
