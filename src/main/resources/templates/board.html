@@ -19,27 +19,6 @@
             </ul>
         </div>
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">Board</div>
-
-            <div class="panel-body">
-                <table class="table table-bordered">
-                    <tr>
-                        <th>Id</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Date</th>
-                    </tr>
-                    <tr th:each="a:${tasks}">
-                        <td th:text="${a.id}"></td>
-                        <td th:text="${a.title}"></td>
-                        <td th:text="${a.description}"></td>
-                        <td th:text="${a.date}"></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
         <div class="col-sm-4">
             <div class="panel panel-default">
                 <div class="panel-heading" style="display: flex; align-items: center; justify-content: space-between;">
