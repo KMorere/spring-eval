@@ -5,7 +5,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor @Setter @ToString
@@ -33,5 +35,21 @@ public class Task implements Serializable {
         this.description = description;
         this.date = date;
         this.tag = tag;
+    }
+
+    /**
+     * Calculate the amount of days left for a task.
+     * @return the amount of days left or how long ago the date was passed.
+     */
+    public String dateCountdown() {
+        String text = "";
+        int days = (int)ChronoUnit.DAYS.between(LocalDate.now(), this.getDate());
+
+        if (days == 0)
+            text = "today";
+        else
+            text = (days >= 0) ? ""+days : Math.abs(days)+" days ago";
+
+        return text;
     }
 }
