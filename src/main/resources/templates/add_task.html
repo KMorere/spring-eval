@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Add Task</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="col-md-4 col-xs-8">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Add a new task</div>
+
+            <div class="panel-body">
+                <form th:action="@{/save}" method="post">
+                    <div class="form-group">
+                        <label class="control-label">
+                            Brand :
+                            <input class="form-control" type="text" name="title">
+                            <span th:errors="${task.title}"></span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">
+                            Description :
+                            <input class="form-control" type="text" name="description">
+                            <span th:errors="${task.description}"></span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">
+                            Price :
+                            <input class="form-control" type="text" name="date">
+                            <span th:errors="${task.date}"></span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">
+                            Tag :
+                            <select name="tag">
+                                <option th:each="c:${tags}" th:value="${c.id}" th:text="${c.name}"></option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

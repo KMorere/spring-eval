@@ -1,18 +1,25 @@
 package fr.fms.Boardle.web;
 
+import fr.fms.Boardle.dao.TagRepository;
 import fr.fms.Boardle.dao.TaskRepository;
 import fr.fms.Boardle.entities.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 public class TaskController {
     @Autowired
     TaskRepository taskRepository;
+
+    @Autowired
+    TagRepository tagRepository;
 
     @GetMapping("/index")
     public String index(Model model) {
@@ -21,5 +28,20 @@ public class TaskController {
         model.addAttribute("tasks", tasks);
 
         return "board";
+    }
+
+    @GetMapping("/add_task")
+    public String add_task(Model model) {
+        model.addAttribute("task", new Task());
+        model.addAttribute("tags", tagRepository.findAll());
+        return "add_task";
+    }
+
+    @PostMapping("/save")
+    public String save(@Valid Task task, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "add_task";
+        taskRepository.save(task);
+        return "redirect:/index";
     }
 }
