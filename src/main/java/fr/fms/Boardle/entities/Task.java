@@ -51,13 +51,13 @@ public class Task implements Serializable {
      * @return The amount of days left or how long ago the date was passed.
      */
     public String formatDate() {
-        String text = "";
         int days = this.dateCountdown();
+        String text = ""+days;
 
         if (days == 0)
             text = "Today";
-        else
-            text = (days >= 0) ? ""+days : Math.abs(days)+" days ago";
+        else if (days < 0)
+            text = (days < -1) ? Math.abs(days)+" days ago" : Math.abs(days)+" day ago";
 
         return text;
     }
