@@ -3,7 +3,6 @@ package fr.fms.Boardle.web;
 import fr.fms.Boardle.dao.AppUserRepository;
 import fr.fms.Boardle.entities.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,13 +17,6 @@ public class UserController {
     @Autowired
     private AppUserRepository userRepository;
 
-    private final BCryptPasswordEncoder passwordEncoder;
-
-    @Autowired
-    public UserController(BCryptPasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
-
     private static final String REDIRECT = "redirect:/index";
 
     @GetMapping("/login")
@@ -38,11 +30,12 @@ public class UserController {
                         HttpSession session, Model model) {
         Optional<AppUser> user = userRepository.findByUsername(username);
 
-        if (user.isPresent() && passwordEncoder.matches(password, user.get().getPassword())) {
+        if (user.isPresent() && password.equals(user.get().getPassword())) {
             session.setAttribute("currentUser", user.get());
             return REDIRECT;
         }
         model.addAttribute("error", "Unknown username or password");
+
         return "login";
     }
 
@@ -61,7 +54,7 @@ public class UserController {
 
         AppUser user = new AppUser();
         user.setUsername(username);
-        user.setPassword(passwordEncoder.encode(password));
+        user.setPassword(password);
         user.setRole("USER");
         userRepository.save(user);
 
