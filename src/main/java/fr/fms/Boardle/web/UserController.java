@@ -18,10 +18,14 @@ public class UserController {
     @Autowired
     private AppUserRepository userRepository;
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    private static final String REDIRECT = "redirecti:/index";
+    @Autowired
+    public UserController(BCryptPasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    private static final String REDIRECT = "redirect:/index";
 
     @GetMapping("/login")
     public String loginForm() {
@@ -36,12 +40,9 @@ public class UserController {
 
         if (user.isPresent() && passwordEncoder.matches(password, user.get().getPassword())) {
             session.setAttribute("currentUser", user.get());
-            if (user.get().getRole().equals("ADMIN")) {
-                return REDIRECT;
-            }
             return REDIRECT;
         }
-        model.addAttribute("error", "Identifiants incorrect");
+        model.addAttribute("error", "Unknown username or password");
         return "login";
     }
 
