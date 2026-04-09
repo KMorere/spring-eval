@@ -33,6 +33,14 @@
                     </form>
                 </div>
 
+                <div class="container-fluid">
+                    <ul class="nav nav-pills">
+                        <li th:class="${tag==t.title}?'active':''" th:each="t:${tags}">
+                            <a th:href="@{/index(page=${currentPage}, keyword=${keyword}, tag=${t.title})}" th:text="${t.title}"></a>
+                        </li>
+                    </ul>
+                </div>
+
                 <div class="col-sm-4">
                     <div class="panel panel-default">
                         <div class="panel-heading" style="display: flex; align-items: center; justify-content: space-between;">

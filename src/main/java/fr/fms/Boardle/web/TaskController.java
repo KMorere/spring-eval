@@ -2,8 +2,10 @@ package fr.fms.Boardle.web;
 
 import fr.fms.Boardle.dao.TagRepository;
 import fr.fms.Boardle.dao.TaskRepository;
+import fr.fms.Boardle.entities.Tag;
 import fr.fms.Boardle.entities.Task;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,12 +25,28 @@ public class TaskController {
     @Autowired
     TagRepository tagRepository;
 
+    private String currentTag;
+
     @GetMapping("/index")
     public String index(Model model,
-                        @RequestParam(name="keyword", defaultValue = "") String kw) {
+                        @RequestParam(name="keyword", defaultValue = "") String kw,
+                        @RequestParam(name="tag", defaultValue = "") String tag) {
         List<Task> tasks = taskRepository.findByTitleContains(kw);
+        List<Tag> tags = tagRepository.findAll();
+
+        if (!tag.isEmpty()) {
+            if (tag.equals(currentTag))
+                tag = "";
+            else {
+                tasks = taskRepository.findByTagId(
+                        tagRepository.findByTitle(tag).getId());
+                currentTag = tag;
+            }
+        }
 
         model.addAttribute("tasks", tasks);
+        model.addAttribute("tags", tags);
+        model.addAttribute("tag", tag);
         model.addAttribute("keyword", kw);
 
         return "board";
