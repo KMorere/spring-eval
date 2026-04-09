@@ -74,7 +74,7 @@ public class TaskController {
         return "redirect:/index";
     }
 
-    @DeleteMapping("/delete_task")
+    @GetMapping("/delete_task")
     public String delete(Long id) {
         taskRepository.deleteById(id);
 
