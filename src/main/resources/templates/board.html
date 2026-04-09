@@ -36,7 +36,7 @@
                 <div class="container-fluid">
                     <ul class="nav nav-pills">
                         <li th:class="${tag==t.title}?'active':''" th:each="t:${tags}">
-                            <a th:href="@{/index(page=${currentPage}, keyword=${keyword}, tag=${t.title})}" th:text="${t.title}"></a>
+                            <a th:href="@{/index(keyword=${keyword}, tag=${t.title})}" th:text="${t.title}"></a>
                         </li>
                     </ul>
                 </div>
