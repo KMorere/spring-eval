@@ -16,6 +16,7 @@
             <div class="panel-body">
                 <form th:action="@{/update}" th:object="${task}" method="post">
                     <input type="hidden" class="form-control" name="id" th:value="*{id}" id="id">
+                    <input type="hidden" class="form-control" name="completed" th:value="*{completed}">
 
                     <div class="form-group">
                         <label class="control-label">
