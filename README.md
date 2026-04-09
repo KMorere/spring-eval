@@ -6,11 +6,11 @@
 - [Architecture](#architecture)
 
 # Introduction
-C’est une application simple permettant à un utilisateur connecté d’ajouter, supprimer, 
-mettre à jour ou de rechercher une tache à faire, classée ou pas par catégorie.  
-Un utilisateur non authentifié aura accès à la page d’accueil du site avec pour exemple un 
-ensemble de taches fictives.  
-Une tache est définie par : Titre, Description, Date et une étiquette.  
+Boardle est une application simple de gestion de tâches utilisant le principe d'un tableau de Kanban.  
+Elle permettant à un utilisateur connecté d’ajouter, supprimer ou modifier une tâche.  
+Un utilisateur non authentifié aura accès à la page d’accueil du site.  
+L'affichage du tableau permet également de filtrer à partir des étiquettes ou bien d'une barre de recherche.  
+Une tache est définie par : Titre, Description, Date et une Étiquette.  
 
 # Installation
 Le projet utilise la version 1.8 de Java et la version 2.5.3 de Spring.  
