@@ -23,6 +23,16 @@
             <div class="panel-heading">Board</div>
 
             <div class="panel-body">
+                <div class="panel-body">
+                    <form th:action="@{/index}" method="get">
+                        <label>
+                            Keyword
+                            <input type="text" name="keyword" th:value="${keyword}">
+                        </label>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                </div>
+
                 <div class="col-sm-4">
                     <div class="panel panel-default">
                         <div class="panel-heading" style="display: flex; align-items: center; justify-content: space-between;">

@@ -24,10 +24,12 @@ public class TaskController {
     TagRepository tagRepository;
 
     @GetMapping("/index")
-    public String index(Model model) {
-        List<Task> tasks = taskRepository.findAll();
+    public String index(Model model,
+                        @RequestParam(name="keyword", defaultValue = "") String kw) {
+        List<Task> tasks = taskRepository.findByTitleContains(kw);
 
         model.addAttribute("tasks", tasks);
+        model.addAttribute("keyword", kw);
 
         return "board";
     }
